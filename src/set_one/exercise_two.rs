@@ -1,16 +1,16 @@
 use crate::set_one::error::SetOneError;
 use crate::set_one::exercise_one::hex_to_bytes;
 
-fn xor_hex(a: &str, b: &str) -> Result<String, SetOneError> {
+pub fn xor_hex(a: &str, b: &str) -> Result<String, SetOneError> {
     let a = hex_to_bytes(a)?;
     let b = hex_to_bytes(b)?;
     let bytes = xor_bytes(&a, &b)?;
-    Ok(bytes_to_hex(&bytes))
+    Ok(bytes_to_hex(&bytes[..]))
 }
 
-fn xor_bytes(a: &Vec<u8>, b: &Vec<u8>) -> Result<Vec<u8>, SetOneError> {
+pub fn xor_bytes(a: &Vec<u8>, b: &Vec<u8>) -> Result<Vec<u8>, SetOneError> {
     if a.len() != b.len() {
-        return Err(SetOneError::IncompatibleSizeError(a.len(), b.len()));
+        return Err(SetOneError::IncompatibleSize(a.len(), b.len()));
     }
     let mut c: Vec<u8> = Vec::new();
     for (a, b) in a.iter().zip(b.iter()) {
@@ -19,7 +19,7 @@ fn xor_bytes(a: &Vec<u8>, b: &Vec<u8>) -> Result<Vec<u8>, SetOneError> {
     Ok(c)
 }
 
-fn bytes_to_hex(bytes: &[u8]) -> String {
+pub fn bytes_to_hex(bytes: &[u8]) -> String {
     let mut hex = String::new();
     for byte in bytes {
         let h: u8 = byte >> 4;

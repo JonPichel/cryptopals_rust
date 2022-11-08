@@ -19,7 +19,7 @@ pub fn hex_to_bytes(hex: &str) -> Result<Vec<u8>, SetOneError> {
             b'A'..=b'F' => {
                 byte = (byte << 4) + (char - b'A' + 10);
             }
-            _ => return Err(SetOneError::InvalidHexError(hex.to_string())),
+            _ => return Err(SetOneError::InvalidHex(hex.to_string())),
         }
         if index % 2 == 1 {
             bytes.push(byte);
