@@ -26,5 +26,11 @@ pub enum SetOneExercises {
     },
     ExerciseSix {
         path: PathBuf,
+    },
+    ExerciseSeven {
+        path: PathBuf,
+    },
+    ExerciseEight {
+        path: PathBuf,
     }
 }
