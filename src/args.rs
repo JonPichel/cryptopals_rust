@@ -16,6 +16,10 @@ pub enum Sets {
     SetOne {
         #[command(subcommand)]
         exercises: SetOneExercises
+    },
+    SetTwo {
+        #[command(subcommand)]
+        exercises: SetTwoExercises
     }
 }
 
@@ -31,6 +35,13 @@ pub enum SetOneExercises {
         path: PathBuf,
     },
     ExerciseEight {
+        path: PathBuf,
+    }
+}
+
+#[derive(Subcommand, Debug)]
+pub enum SetTwoExercises {
+    ExerciseTen {
         path: PathBuf,
     }
 }
